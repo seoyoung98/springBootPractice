@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>free board list</title>
+<style>
+	td {
+		text-align: center;
+		height: 25px;
+		padding: 0px 5px 0px 5px;
+	}
+	th {
+		background-color: lightgray;
+		height: 25px;
+		padding: 0px 5px 0px 5px;
+	}
+	.navy {
+		background-color: navy;
+		color: white;
+	}
+	.skyblue {
+		background-color: skyblue;
+	}
+	.first {
+		color : red;
+	}
+	.last {
+		color : hotpink;
+	}
+</style>
+</head>
+<body>
+	<h1>free board list</h1>
+	<h2 th:text="${@environment.getProperty('app.title')}"></h2>
+	<h2 th:text="${@environment.getProperty('server.port')}"></h2>
+	<p>[[#{response.characterEncoding}]]</p>
+	<table border="1" th:with="target=${loginUser}, friend=${myFriend}">
+		<tr>
+			<th>index - count - size</th>
+			<th>first, last, odd, even</th>
+			<th>글번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>내용</th>
+			<th>내용 - 인라인</th>
+			<th>등록일</th>
+			<th>수정일</th>
+			<th>gg</th>
+			<th>댓글수</th>
+		</tr>
+		<tr th:each="board,status:${blist}" th:class="${status.even}?'navy':'skyblue'">
+		<!-- 첫 번째 row이면 글 red, 마지막 row이면 글 blue -->
+			<td th:class="${status.first}?'first':''" th:classappend="${status.last}?'last':''"  th:text="${status.index + ' -- ' + status.count + ' -- ' + status.size}"/>
+			<td th:text="|${status.first} -- ${status.last} -- ${status.odd} -- ${status.even}|"/>
+			<td th:text="${board.bno}" />
+			<td th:text="${board.title}" />
+			<td th:text="${board.writer==target?'타겟찾음':board.writer}" />
+			<td th:text="${board.content}" />
+			<td>[[${board.content}]]</td>
+			<td th:text="${#dates.format(board.regdate,'yyyy-MM-dd')}" />
+			<td th:text="${#dates.format(board.updatedate,'yyyy-MM-dd')}" />
+			<td th:if="${board.writer}">
+				<a href="" th:if="${board.writer==friend}">수정</a>
+				<a th:unless="${board.writer==friend}">view</a>
+			</td>
+			<td th:text="${board.replies.size}"></td>
+		</tr>
+	</table>
+	<script th:inline="javascript">
+		var boardList = [[${blist}]];
+		boardList.forEach(item => {
+			console.log(item);
+		});
+	</script>
+</body>
+</html>

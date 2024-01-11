@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>연습 타임리프</h1>
+	<h1>서영이는 귀엽당</h1>
+	<h1>아니당.....................</h1>
+	<h1>다시 생각해보자</h1>
+	
+	<h2 th:text="${greeting}">아무거나</h2>
+	<p th:text="${board}"></p>
+	<p th:text="${board.title}"></p>
+	<p th:utext="${'<h2>' + board.title + '</h2>'}">html 태그가 동작한다.</p>
+	<p th:text="${'<h2>' + board.title + '</h2>'}">html 태그가 문자로 출력된다.</p>
+</body>
+</html>

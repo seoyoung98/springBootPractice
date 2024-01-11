@@ -6,6 +6,8 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,6 +44,8 @@ public class FreeBoard {
 	@UpdateTimestamp
 	private Timestamp updatedate;
 	
+	// 자바 객체가 브라우저로 내려갈 때 json data로 변경되어 내려간다. 
+	@JsonIgnore // 무한 루프가 되지 않도록 FreeBoard -> FreeBoardReply -> 다시 FreeBoard로 가기는 막아야 한다.
 	// 연관관계 설정하기
 	// 하나의 board에 댓글이 여러 개이다.
 	// mappedby를 하면서 중간 칼럼이 생기지 않고 
