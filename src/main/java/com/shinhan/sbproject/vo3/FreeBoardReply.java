@@ -19,7 +19,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-@ToString
+@ToString(exclude = "board2")
 @Builder
 @Entity
 @Table(name = "tbl_free_replies_young")

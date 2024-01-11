@@ -1,7 +1,5 @@
 package com.shinhan.sbproject;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -15,10 +13,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
+import com.querydsl.core.BooleanBuilder;
 import com.shinhan.sbproject.repository.FreeBoardReplyRepository;
 import com.shinhan.sbproject.repository.FreeBoardRepository;
 import com.shinhan.sbproject.vo3.FreeBoard;
 import com.shinhan.sbproject.vo3.FreeBoardReply;
+import com.shinhan.sbproject.vo3.QFreeBoard;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,8 +31,45 @@ public class TwoWayTest {
 	@Autowired
 	FreeBoardReplyRepository replyRepo;
 	
-	// writer 가 쓴 글 찾아오기
+	// querydsl 사용
 	@Test
+	void selectByTitle2() {
+		String title = "연습";
+		Long bno = 10L;
+		BooleanBuilder builder = new BooleanBuilder();
+		QFreeBoard board = QFreeBoard.freeBoard;
+		
+		if(title != null) {
+			builder.and(board.title.like("%" + title + "%"));
+		}
+		builder.and(board.bno.lt(bno));
+//		boardRepo.findAll(builder).forEach(i->{
+//			log.info(i.toString());
+//		});
+		
+//		boardRepo.findAll(builder, Sort.by("bno").descending()).forEach(b->log.info(b.toString()));
+		
+		Pageable page = PageRequest.of(0, 5, Direction.DESC, "bno");
+		Page<FreeBoard> result = boardRepo.findAll(builder, page);
+		List<FreeBoard> blist = result.getContent();
+		log.info("건수 : " + result.getTotalElements());
+		log.info("페이지 수 : " + result.getTotalPages());
+		blist.forEach(b ->log.info(b.toString()));
+	}
+	
+	//@Test
+	void selectByTitle() {
+		String title = "연습";
+		boardRepo.selectByTitle(title).forEach(b->log.info(Arrays.toString(b)));	
+		log.info("-------------------");
+		boardRepo.selectByTitle2(title).forEach(b->log.info(Arrays.toString(b)));	
+		log.info("-------------------");
+		boardRepo.selectByTitle3(title).forEach(b->log.info(Arrays.toString(b)));	
+		
+	}
+	
+	// writer 가 쓴 글 찾아오기
+	//@Test
 	void selectBoard3() {
 		Pageable paging = PageRequest.of(1, 3, Sort.by(Direction.ASC, "bno"));
 		Page<FreeBoard> result = boardRepo.findByWriter("user1", paging);
