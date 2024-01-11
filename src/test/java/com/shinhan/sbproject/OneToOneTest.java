@@ -6,11 +6,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.shinhan.sbproject.repository.composite.UserCellPhone2Repository;
 import com.shinhan.sbproject.repository.composite.UserCellPhoneRepository;
+import com.shinhan.sbproject.repository.composite.UserVO3Repository;
 import com.shinhan.sbproject.repository.composite.UserVORepository;
 import com.shinhan.sbproject.vo4.UserCellPhoneVO;
 import com.shinhan.sbproject.vo4.UserCellPhoneVO2;
+import com.shinhan.sbproject.vo4.UserCellPhoneVO3;
 import com.shinhan.sbproject.vo4.UserVO;
 import com.shinhan.sbproject.vo4.UserVO2;
+import com.shinhan.sbproject.vo4.UserVO3;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +28,24 @@ public class OneToOneTest {
 	
 	@Autowired
 	UserVORepository uRepo;
+	
+	@Autowired
+	UserVO3Repository u3repo;
+	
+	@Test
+	void f5() {
+		UserCellPhoneVO3 phone = UserCellPhoneVO3.builder()
+													.phoneNumber("010-1236-1263")
+													.model("apple")
+													.build();
+		UserVO3 user = UserVO3.builder()
+								.userid("second")
+								.username("신촌")
+								.phone(phone)
+								.build();
+		phone.setUser2(user);
+		u3repo.save(user);
+	}
 	
 	//@Test
 	void f4() {
@@ -54,7 +75,7 @@ public class OneToOneTest {
 	}
 	
 	// phone 정보를 먼저 저장하고 user에 phone 넣기
-	@Test
+	//@Test
 	void f1() {
 		UserCellPhoneVO phone = UserCellPhoneVO.builder()
 												.phoneNumber("010-1231-2312")
