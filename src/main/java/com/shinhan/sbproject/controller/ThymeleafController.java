@@ -1,6 +1,8 @@
 package com.shinhan.sbproject.controller;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.shinhan.sbproject.repository.FreeBoardRepository;
 import com.shinhan.sbproject.vo3.FreeBoard;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -17,6 +21,18 @@ import lombok.extern.slf4j.Slf4j;
 public class ThymeleafController {
 	@Autowired
 	FreeBoardRepository bRepo;
+	
+	@GetMapping("/hello3")
+	public void f4(Model model, HttpServletRequest request, HttpSession session) {
+//		HttpServletRequest -> 요청 정보에 있는 값을 넘겨야 할 때
+		model.addAttribute("myname1", request.getParameter("name"));
+		model.addAttribute("myname2", session.getId());
+		
+		model.addAttribute("now", new Date());
+		model.addAttribute("price", 1235656723);
+		model.addAttribute("title", "sample simple");
+		model.addAttribute("options", Arrays.asList("AA","BB","CC"));
+	}
 	
 	// freeboard를 모두 가져와라
 	@GetMapping("/freeboard/list")

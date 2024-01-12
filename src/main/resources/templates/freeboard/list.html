@@ -31,9 +31,6 @@
 </head>
 <body>
 	<h1>free board list</h1>
-	<h2 th:text="${@environment.getProperty('app.title')}"></h2>
-	<h2 th:text="${@environment.getProperty('server.port')}"></h2>
-	<p>[[#{response.characterEncoding}]]</p>
 	<table border="1" th:with="target=${loginUser}, friend=${myFriend}">
 		<tr>
 			<th>index - count - size</th>
