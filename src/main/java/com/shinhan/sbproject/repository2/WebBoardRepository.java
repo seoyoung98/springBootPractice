@@ -15,12 +15,17 @@ public interface WebBoardRepository extends CrudRepository<WebBoard, Long>, Pagi
 	// type : title, content, writer
 	// keyword : word
 	public default Predicate makePredicate(String type, String keyword) {
+		System.out.println("typemake" + type);
+		System.out.println("keywordmake" + keyword);
 		BooleanBuilder builder = new BooleanBuilder();
 		QWebBoard board = QWebBoard.webBoard;
 //		builder.and(board.bno.gt(0)); // and bn0 > 0
-		if (keyword == null)
+		System.out.println("gg" + type);
+		if (type == null) {
 			return builder;
-		if(keyword.equals("전체검색")) {
+		}	
+			
+		if(type.equals("전체")) {
 			builder.or(board.title.like("%" + keyword + "%"));
 			builder.or(board.content.like("%" + keyword + "%"));
 			builder.or(board.writer.like("%" + keyword + "%"));

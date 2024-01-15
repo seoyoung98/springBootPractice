@@ -39,10 +39,10 @@ public class PageVO {
 		return PageRequest.of(this.page-1, this.size , dir, props );
                    }
 	public void setType(String type) {
-this.type = type;
-}
-    
-public void setKeyword(String keyword) {
-this.keyword = keyword;
-}
+		this.type = type;
+	}
+	    
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 }

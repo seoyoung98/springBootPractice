@@ -3,10 +3,6 @@ package com.shinhan.sbproject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
-import com.shinhan.sbproject.repository.DeptRepository;
 
 @ComponentScan(basePackages = {"com.shinhan.sbproject","com.shinhan.firstzone", "com.shinhan.firstzone2"})
 @SpringBootApplication
