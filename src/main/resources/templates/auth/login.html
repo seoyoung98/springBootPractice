@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout1}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	login
+	<div class="panel panel-default" layout:fragment="content">
+		<div class="panel-body">
+			<h2>CUSTOM LOGIN PAGE</h2>
+			<form method="post"><!-- form에 action을 안쓰면 default로 같은 주소로 이동 -->
+				<p>
+					<label for="username">Username</label> <input type="text"
+						id="username" name="username" value="young1" />
+					<!-- 이름변경불가  : username
+						spring security는 꼭!! username이여야 한다. -->
+				</p>
+				<p>
+					<label for="password">Password</label> <input type="password"
+						id="password" name="password" value="1234" />
+					<!-- 이름변경불가  : password -->
+				</p>
+				
+				<button type="submit" class="btn btn-primary">Log in</button>
+
+			</form>
+			 
+		</div>
+	</div>
+
+    <img src="upload/images/1.png">
+</body>
+</html>

@@ -4,10 +4,8 @@
 
 //var token = $("meta[name='_csrf']").attr("content");
 //var header = $("meta[name='_csrf_header']").attr("content");
- 
 
 var replyManager = (function() {
-
     ///특정board의 댓글가져오기 ==> replies/100, function(responseData){}
 	var getAll2 = function(obj, callback2) {
 		console.log("get All.....");
@@ -28,7 +26,7 @@ var replyManager = (function() {
 	var add2 = function(obj, callback){
 		console.log("add.....");
 	    $.ajax({
-	        //beforeSend: beforeSend,
+	        beforeSend: beforeSend,
 			type:"post",
 			url: "/reply/add/" + obj.bno,
 			data: JSON.stringify(obj),
@@ -40,7 +38,7 @@ var replyManager = (function() {
 	//댓글수정
     var update2 = function(obj, callback) {
 		$.ajax({
-		    //beforeSend: beforeSend,
+		    beforeSend: beforeSend,
 			type: "put",
 			url:"/reply/update/" +  obj.bno,
 			data:JSON.stringify(obj),
@@ -52,7 +50,7 @@ var replyManager = (function() {
 
     var remove2 = function(obj, callback)  {
 	$.ajax({
-	    //beforeSend: beforeSend,
+	    beforeSend: beforeSend,
 		type:  "delete",
 		url:  "/reply/delete/"+obj.bno + "/" + obj.rno,
 		dataType: "json",

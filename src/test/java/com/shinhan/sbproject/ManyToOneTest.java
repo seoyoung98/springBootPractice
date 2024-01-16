@@ -28,7 +28,7 @@ public class ManyToOneTest {
 	@Autowired
 	ProfileRepository profileRepo;
 	
-	@Test
+	//@Test
 	void jpqlTest() {
 		String mid = "user1";
 		int count = memRepo.getProfileCountByMember(mid);
@@ -122,7 +122,7 @@ public class ManyToOneTest {
 		});
 	}
 	
-	//@Test
+	@Test
 	void memberInsert() {
 		// 10명의 member 입력하기 1~5 : user 권한 6~8 : manager 권한 9~10 : admin 권한
 		IntStream.rangeClosed(1, 10).forEach(i -> {
