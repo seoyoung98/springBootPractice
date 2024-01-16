@@ -19,8 +19,11 @@ import com.shinhan.sbproject.repository2.WebReplyRepository;
 import com.shinhan.sbproject.vo6.WebBoard;
 import com.shinhan.sbproject.vo6.WebReply;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/reply")
+@Tag(name="댓글",description="여기에서는 webboard reply crud 가능")
 public class WebBoardReplyController {
 	
 	@Autowired

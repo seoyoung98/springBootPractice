@@ -7,6 +7,9 @@
 <body>
 	<div th:fragment="header2">
 		<h1>header 조각 2 입니다.</h1>
+		<p th:if="${user != null}" th:text="${user.mname}+'님 안녕하시렵니까?'"></p>
+		<p th:text="${user!=null?user.mname+'님 환영합니다람쥐':''}"></p>
+		<p>[[${session.user!=null?session.user.mname+' 동선님 코드':'mname이 없습니다.'}]]</p>
 	</div>
 	<div th:fragment="header3">
 		<h1>header 조각 3 입니다.</h1>

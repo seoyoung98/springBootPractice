@@ -35,8 +35,9 @@ table {
 		  <input type="text" id="searchKeyword" th:value="${pageVO.keyword}">
 		  <button id="searchBtn">조건검색</button>
 		   <img alt="이미지" th:src="@{/images/coffee-blue.jpg}" width="50px" height="50px">
-		</div>
-		
+	   </div>
+		<hr>
+		<div>
 		<table>
 			<tr class="bg-success">
 				<th>글번호</th>
@@ -86,6 +87,7 @@ table {
 		    <input type="hidden" name="type" th:value="${pageVO.type}">
 		    <input type="hidden" name="keyword" th:value="${pageVO.keyword}">
 	    </form>
+	</div>
 	</div>
 	<th:block layout:fragment="script1">
 		<script th:inline="javascript">
